@@ -69,23 +69,31 @@ export function useHourlySales(options?: UseSalesDataOptions) {
   async function fetchHourlySales() {
     try {
       setIsLoading(true);
-      let query = supabase
-        .from('hourly_sales_metrics')
-        .select('*')
-        .order('date', { ascending: false })
-        .order('hour', { ascending: true });
 
+      let query = 'select=*&order=date.desc,hour.asc';
       if (options?.startDate) {
-        query = query.gte('date', options.startDate);
+        query += `&date=gte.${options.startDate}`;
       }
       if (options?.endDate) {
-        query = query.lte('date', options.endDate);
+        query += `&date=lte.${options.endDate}`;
       }
 
-      const { data: result, error: err } = await query;
+      const url = `${SUPABASE_URL}/rest/v1/hourly_sales_metrics?${query}`;
 
-      if (err) throw err;
-      setData(result || []);
+      const response = await fetch(url, {
+        headers: {
+          'apikey': SUPABASE_KEY!,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`API Error: ${response.status}`);
+      }
+
+      const result = await response.json();
+      setData(Array.isArray(result) ? result : []);
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Failed to fetch hourly sales'));
     } finally {
@@ -108,22 +116,31 @@ export function useProductSales(options?: UseSalesDataOptions) {
   async function fetchProductSales() {
     try {
       setIsLoading(true);
-      let query = supabase
-        .from('product_sales')
-        .select('*')
-        .order('date', { ascending: false });
 
+      let query = 'select=*&order=date.desc';
       if (options?.startDate) {
-        query = query.gte('date', options.startDate);
+        query += `&date=gte.${options.startDate}`;
       }
       if (options?.endDate) {
-        query = query.lte('date', options.endDate);
+        query += `&date=lte.${options.endDate}`;
       }
 
-      const { data: result, error: err } = await query;
+      const url = `${SUPABASE_URL}/rest/v1/product_sales?${query}`;
 
-      if (err) throw err;
-      setData(result || []);
+      const response = await fetch(url, {
+        headers: {
+          'apikey': SUPABASE_KEY!,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`API Error: ${response.status}`);
+      }
+
+      const result = await response.json();
+      setData(Array.isArray(result) ? result : []);
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Failed to fetch product sales'));
     } finally {
@@ -146,22 +163,31 @@ export function useAttendantMetrics(options?: UseSalesDataOptions) {
   async function fetchAttendantMetrics() {
     try {
       setIsLoading(true);
-      let query = supabase
-        .from('attendant_metrics')
-        .select('*')
-        .order('date', { ascending: false });
 
+      let query = 'select=*&order=date.desc';
       if (options?.startDate) {
-        query = query.gte('date', options.startDate);
+        query += `&date=gte.${options.startDate}`;
       }
       if (options?.endDate) {
-        query = query.lte('date', options.endDate);
+        query += `&date=lte.${options.endDate}`;
       }
 
-      const { data: result, error: err } = await query;
+      const url = `${SUPABASE_URL}/rest/v1/attendant_metrics?${query}`;
 
-      if (err) throw err;
-      setData(result || []);
+      const response = await fetch(url, {
+        headers: {
+          'apikey': SUPABASE_KEY!,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`API Error: ${response.status}`);
+      }
+
+      const result = await response.json();
+      setData(Array.isArray(result) ? result : []);
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Failed to fetch attendant metrics'));
     } finally {

@@ -1,0 +1,12 @@
+/assets/*.js
+  Content-Type: application/javascript
+
+/assets/*.mjs
+  Content-Type: application/javascript
+
+/assets/*.css
+  Content-Type: text/css
+
+/*
+  X-UA-Compatible: IE=edge
+  X-Content-Type-Options: nosniff

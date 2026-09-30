@@ -35,6 +35,8 @@ Sistema integrado de dashboard para análise de faturamento e vendas da Loppiano
 
 **Deploy em produção**: [Vercel](https://dashboard-loppiano-sheets.vercel.app)
 
+**Status**: Rodando em Vercel com variáveis de ambiente configuradas
+
 ## 📋 Visão Geral
 
 O dashboard reúne dados de duas principais fontes:

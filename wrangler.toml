@@ -1,0 +1,10 @@
+name = "loppiano-dashboard"
+type = "javascript"
+account_id = ""
+workers_dev = true
+route = ""
+zone_id = ""
+main = "dist/index.html"
+
+[env.production]
+name = "loppiano-dashboard-prod"

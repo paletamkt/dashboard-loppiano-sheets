@@ -33,6 +33,8 @@ If you are developing a production application, we recommend enabling type-aware
 
 Sistema integrado de dashboard para análise de faturamento e vendas da Loppiano Pizza.
 
+**Deploy em produção**: [Vercel](https://dashboard-loppiano-sheets.vercel.app)
+
 ## 📋 Visão Geral
 
 O dashboard reúne dados de duas principais fontes:

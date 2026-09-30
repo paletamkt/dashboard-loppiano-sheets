@@ -1,0 +1,5 @@
+name = "loppiano-dashboard"
+pages_build_output_dir = "dist"
+
+[env.production]
+name = "loppiano-dashboard-prod"
